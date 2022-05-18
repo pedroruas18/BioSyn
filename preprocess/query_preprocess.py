@@ -9,10 +9,8 @@ from tqdm import tqdm
 
 import pdb
 
-from biosyn import (
-    Abbr_resolver,
-    TextPreprocess
-)
+from src.biosyn.preprocesser import TextPreprocess
+from src.biosyn.abbr_resolver import Abbr_resolver
 
 def str2bool(v):
     if isinstance(v, bool):
@@ -105,6 +103,7 @@ def load_cui_set(path):
 
 def handle_cuiless(concept, cui_set, remove_cuiless):
     result = []
+   
     for pmid, span, mention_type, mention, cui in concept:
         cui = cui.replace('OMIM:', '').replace('MESH:', '')
         cui_list, _ = split_composite_cui(cui)
@@ -264,7 +263,7 @@ def main(args):
         concept = apply_basic_preprocess(concept, text_preprocessor)
         
         # handle cuiless
-        concept = handle_cuiless(concept, cui_set, args.remove_cuiless)
+        #concept = handle_cuiless(concept, cui_set, args.remove_cuiless)
         num_queries += len(concept)
         write_concept(output_path, concept)
     

@@ -58,6 +58,7 @@ def main(args):
             concept = "\n".join(queries) + "\n"
             output_context_file = os.path.join(output_dir, "{}.txt".format(pmid))
             output_concept_file = os.path.join(output_dir, "{}.concept".format(pmid))
+            
             with open(output_context_file, 'w') as f:
                 f.write(context)
             with open(output_concept_file, 'w') as f:
@@ -80,7 +81,8 @@ if __name__ == '__main__':
     parser.add_argument('--output_dir', type=str,
                     default="./bc5cdr-disease/train", 
                     help='path of output directionary')
-    parser.add_argument('--type', type=str, choices=["chemical", "disease", "Disease", "Chemical"])
+    parser.add_argument('--type', type=str, choices=[
+        "chemical", "disease", "Disease", "Chemical", 'Anatomical', 'Bioprocess'])
 
     args = parser.parse_args()
     

@@ -8,9 +8,7 @@ import argparse
 import glob
 import os
 from tqdm import tqdm
-from biosyn import (
-    TextPreprocess
-)
+from src.biosyn.preprocesser import TextPreprocess
 
 def parse_args():
     """

@@ -165,13 +165,20 @@ def main(args):
     )
 
     if args.draft:
-        train_dictionary = train_dictionary[:100]
-        train_queries = train_queries[:10]
+        #TODO:CHANGE
+        draft_length = len(train_dictionary) // 10
+        draft_length_2 = draft_length // 10
+        train_dictionary = train_dictionary[:draft_length]
+        train_queries = train_queries[:draft_length_2]
         args.output_dir = args.output_dir + "_draft"
         
     # filter only names
-    names_in_train_dictionary = train_dictionary[:,0]
+    #TODO:names_in_train_dictionary = train_dictionary[:,0]
+    #print(train_queries)
+    names_in_train_dictionary = [tp[0] for tp in train_dictionary]
     names_in_train_queries = train_queries[:,0]
+    #names_in_train_dictionary = train_dictionary
+    #names_in_train_queries = train_queries
 
     # load BERT tokenizer, dense_encoder, sparse_encoder
     biosyn = BioSyn(
